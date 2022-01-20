@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
-auth = Blueprint('auth', __name__)
+views = Blueprint('auth', __name__)
 
-@auth.route('/etablissement')
+@views.route('/etablissement')
 def etablissement():
-    return render_template("view/add_etablissement.html")
+    return render_template("views/add_etablissement.html")
