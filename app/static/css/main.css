@@ -4,27 +4,15 @@ body {
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     height: 100px; 
     width: 100%; 
     background-color: #3b83a4;
     color: white;
     font-size: 20px;
-    padding: 10px 20px;
 }
 
-#logo {
-    display: flex;
-    flex-direction: row;
-}
-
-header h1 {
-    padding: 10px;
-}
-
-main {
+.container {
+    max-width: 800px;
     min-height: calc(100vh - 130px);
 }
 
@@ -33,9 +21,4 @@ footer {
     height: 30px;
     background-color: #3b83a4;
     color: white;
-    padding-top: 5px;
-    text-align: center;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
 }

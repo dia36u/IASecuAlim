@@ -1,1 +1,18 @@
 {% extends "layout.html" %}
+
+{% block main %}
+
+    <form action="" method="post" class="align-self-center">
+        <h2 class="text-center py-5">Identification</h2>
+        <div class="mb-3">
+        <label for="email" class="form-label fs-3">Email</label>
+        <input type="email" class="form-control bg-light fs-3" id="email" aria-describedby="email" required>
+        </div>
+        <div class="mb-3">
+        <label for="password" class="form-label fs-3">Mot de passe</label>
+        <input type="password" class="form-control bg-light fs-3" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-lg btn-info align-sel-center fs-3">S'identifier</button>
+    </form>
+
+{% endblock %}

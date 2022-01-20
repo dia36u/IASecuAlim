@@ -6,6 +6,7 @@ def create_app():
     # Define Flask configuration
     app.config['ENV'] = 'development'
     app.config['DEBUG'] = True
+    app.config['SECRET_KEY'] = 'test'
 
     # Define route with Blueprint
     from .views import views
