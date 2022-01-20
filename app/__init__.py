@@ -4,6 +4,8 @@ from os import path
 def create_app():
     app = Flask(__name__)
 
+    app.config['ENV'] = 'development'
+
     # Define route with Blueprint
     from .views import views
     from .auth import auth
