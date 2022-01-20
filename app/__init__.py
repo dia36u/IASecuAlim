@@ -1,10 +1,11 @@
 from flask import Flask
-from os import path
 
 def create_app():
     app = Flask(__name__)
 
+    # Define Flask configuration
     app.config['ENV'] = 'development'
+    app.config['DEBUG'] = True
 
     # Define route with Blueprint
     from .views import views
