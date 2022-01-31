@@ -42,7 +42,7 @@ class Connection:
             conn.commit()
             results = cursor.fetchall()
             cursor.close()
-            print("\nQuery successful\n")
+            print("\nQuery successful: %s \n" % query)
             return results
         except (Exception, pg.DatabaseError) as error:
             print("POSTGRES ERROR :")
@@ -59,7 +59,7 @@ class Connection:
             conn.commit()
             results = cursor.fetchone()
             cursor.close()
-            print("\nQuery successful\n")
+            print("\nQuery successful: %s \n" % query)
             return results
         except (Exception, pg.DatabaseError) as error:
             print("POSTGRES ERROR :")
@@ -77,6 +77,10 @@ class Connection:
                 # copie de la ligne
                 if table == 'etablissement':
                     cursor.copy_from(line, table, columns=('id_etablissement','libelle','siret' ,'adresse','code_postal','commune','coordonnees_gps','agrement'), sep=';')
+                if table == 'cible':
+                    cursor.copy_from(line, table, columns=('id_etablissement','id_type_activite'), sep=';')
+                if table == 'inspecte':
+                    cursor.copy_from(line, table, columns=('id_etablissement','id_hygiene', 'numero_inspection', 'date_inspection'), sep=';')
                 else :
                     cursor.copy_from(line, table, sep=';')
                 conn.commit()
