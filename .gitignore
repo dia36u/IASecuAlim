@@ -1,4 +1,9 @@
+# Dossiers et fichiers à ignorer
 .env
 *.pyc
 __pycache__
 .cache/
+data/*
+
+# Exception
+!data/export_alimconfiance.csv
