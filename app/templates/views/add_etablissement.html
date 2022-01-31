@@ -3,57 +3,63 @@
 {% block title %}Ajout d'établissement{% endblock %} 
 
 {% block main %}
-    <div>
-        <button class="button_action1"
+    <!-- <div>
+        <button class="btn btn-lg btn-info align-sel-center fs-3"
                 type="button">
             Ajouter un établissement
         </button>
-        <button class="button_action1"
+        <button class="btn btn-lg btn-info align-sel-center fs-3"
                 type="button">
-            Importer un CSV ...
+            Importer un CSV
         </button>
     </div>
-    <p>Utilisez l'importation d'un CSV pour plus de 5 établissements.</p>
-    <form action="" method="post" class="etablissement">
-        <div class="etablissement">
-            <p>Etablissement 1</p>
-            <div class="etablissement">
-                    <label for="siret">Siret</label>
-                    <input type="text" name="siret" id="siret" required>
+    <h4>Utilisez l'importation d'un CSV pour plus de 5 établissements.</h4> -->
+    <form action="" method="post" class="etablissement" class="align-self-center">
+        <div class="row">
+            <h2 class="text-center py-2">Renseignez les informations de l'établissement à inspecter</h2>
+            <div class="col-lg-6">
+                <label for="libelle" class="form-label fs-3">Nom de l'établissement</label>
+                <input type="text" name="libelle" id="libelle" class="form-control bg-light fs-3"required>
             </div>
-            <div class="etablissement">
-                    <label for="adresse">Adresse postal</label>
-                    <input type="text" name="adresse" id="adresse">
+            <div class="col-lg-6">
+                    <label for="siret" class="form-label fs-3">Siret</label>
+                    <input type="text" name="siret" id="siret" class="form-control bg-light fs-3"required>
             </div>
-            <div class="etablissement">
-                <label for="code_postal">Code postal</label>
-                <input type="text" name="code_postal" id="code_postal">
+            <div class="col-lg-6">
+                    <label for="adresse" class="form-label fs-3">Adresse postal</label>
+                    <input type="text" name="adresse" id="adresse" class="form-control bg-light fs-3">
             </div>
-            <div class="etablissement">
-                <label for="commune">Commune</label>
-                <input type="text" name="commune" id="commune">
+            <div class="col-lg-6">
+                <label for="code_postal" class="form-label fs-3">Code postal</label>
+                <input type="text" name="code_postal" id="code_postal" class="form-control bg-light fs-3">
+            </div>
+            <div class="col-lg-6">
+                <label for="commune" class="form-label fs-3">Commune</label>
+                <input type="text" name="commune" id="commune" class="form-control bg-light fs-3">
             </div>  
-            <div class="etablissement">
-                <label for="libelle_activite">Libellé de l'activité</label>
-                <input type="text" name="libelle_activite" id="libelle_activite" required>
+            <div class="col-lg-6">
+                <label for="libelle_activite" class="form-label fs-3">Libellé de l'activité</label>
+                <input type="text" name="libelle_activite" id="libelle_activite" class="form-control bg-light fs-3">
             </div>
-            <div class="etablissement">
-                <label for="type_activite">Domaine d'activité</label>
-                <input type="text" name="type_activite" id="type_activite">
+            <div class="col-lg-6">
+                <label for="type_activite" class="form-label fs-3">Domaine d'activité</label>
+                <input type="text" name="type_activite" id="type_activite" class="form-control bg-light fs-3">
             </div>
-            <p>Agrémentation</p>
-            <div class="etablissement">
-                <input type="radio" id="yes" name="agrementation" value="yes">
-                <label for="yes">Oui</label>
+            <div class="col-lg-6">
+            <label for="libelle_activite" class="form-label fs-3">Agrémentation</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Oui</label>
             </div>
-            <div class="etablissement">
-                <input type="radio" id="no" name="agrementation" value="no">
-                <label for="no">Non</label>
-            </div>
-        </div>
-        <div class="etablissement">
-            <input type="submit" value="Lancer l'estimation">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio1">Non</label>
+              </div>
+        <div class="mb-3">
+            <button class="btn btn-lg btn-info align-sel-center fs-3"
+                type="submit" >Lancer l'estimation
             </button>
         </div>
+    </div>
     </form>
 {% endblock %}
