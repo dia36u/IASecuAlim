@@ -8,13 +8,6 @@ auth = Blueprint('auth', __name__)
 @auth.route('/', methods=['POST','GET'])
 def identification():
         if request.method == 'POST':
-<<<<<<< HEAD
-                mail = request.form.get('email')
-                pswd = request.form.get('password')
-
-                return render_template("views/user_profil.html")
-
-=======
                 email = request.form.get('email')
                 password = request.form.get('password')
                 user = User.query.filter_by(email=email).first()
@@ -24,7 +17,6 @@ def identification():
                         else: flash('Incorrect password, try again.', category='error')
                 else: flash('Email does not exist.', category='error')
         return render_template("auth/identification.html")
->>>>>>> 4449505dac3893f5cdba4e5b0b9ecc09044a798d
 
 
 @auth.route('/signup', methods=['POST','GET'])
