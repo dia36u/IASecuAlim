@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
-from Classes import Connection
+from . import Classes
 
 # chemin du dossier de destination des nouveaux csv
 SAVE_CSV_FILEPATH = "database/data/"

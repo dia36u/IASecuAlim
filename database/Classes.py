@@ -1,5 +1,6 @@
 import psycopg2 as pg
-from config import DATABASE
+from . import config
+from .config import DATABASE
 
 
 class Connection:
@@ -10,7 +11,7 @@ class Connection:
         conn = None
         try:
             print('\nConnecting to the PostgreSQL database...')
-            conn = pg.connect(host=DATABASE['host'], dbname='AlimConfiance', user=DATABASE['user'], password=DATABASE['password'], port=DATABASE['port'])
+            conn = pg.connect(host=config.DATABASE['host'], dbname='AlimConfiance', user=config.DATABASE['user'], password=config.DATABASE['password'], port=config.DATABASE['port'])
             print("Connection successful\n")
         # gestion des erreurs et exceptions
         except (Exception, pg.DatabaseError) as error:
@@ -21,11 +22,15 @@ class Connection:
     # Fonction vérifiant l'existance de la table etablissement
     @staticmethod
     def table_exists(conn):
-        results = Connection.query_all(conn, "SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
-        for result in results:
-            if str(result) == "('etablissement',)":
-                return True
-    
+        try:
+            results = Connection.query_all(conn, "SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+            for result in results:
+                if str(result) == "('etablissement',)":
+                    return True
+        except (Exception, pg.DatabaseError) as error:
+            print("POSTGRES ERROR :")
+            print(error)
+
     # Fonction vérifiant l'existance de donnée dans une table
     @staticmethod
     def data_exist(conn, table):

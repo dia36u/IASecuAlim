@@ -6,6 +6,4 @@ CREATE TABLE public.type_activite( id_type_activite SERIAL, type_activite VARCHA
 CREATE TABLE public.inspecte( id_etablissement INT, id_hygiene INT, numero_inspection VARCHAR(50),date_inspection VARCHAR(50),PRIMARY KEY(id_etablissement, id_hygiene, numero_inspection),UNIQUE(numero_inspection),FOREIGN KEY(id_etablissement) REFERENCES etablissement(id_etablissement),FOREIGN KEY(id_hygiene) REFERENCES niveau_hygiene(id_hygiene));
 CREATE TABLE public.concerne( id_etablissement INT, id_activite INT, PRIMARY KEY(id_etablissement, id_activite),FOREIGN KEY(id_etablissement) REFERENCES etablissement(id_etablissement),FOREIGN KEY(id_activite) REFERENCES domaine_activite(id_activite));
 CREATE TABLE public.cible( id_etablissement INT, id_type_activite INT, PRIMARY KEY(id_etablissement, id_type_activite),FOREIGN KEY(id_etablissement) REFERENCES etablissement(id_etablissement),FOREIGN KEY(id_type_activite) REFERENCES Type_activite(id_type_activite));
-CREATE TABLE public.utilisateur( id_user SERIAL, mail VARCHAR(255),nom VARCHAR(30),prenom VARCHAR(30),password VARCHAR(255), PRIMARY KEY(id_user));
-CREATE TABLE public.historique( id_hist SERIAL, id_user INT, created_at DATE, estimation TEXT, PRIMARY KEY(id_hist),FOREIGN KEY(id_user) REFERENCES utilisateur(id_user));
 COMMIT;

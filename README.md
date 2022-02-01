@@ -1,16 +1,22 @@
 # IASecuAlim
+
 L'IA au service de la sécurité alimentaire Groupe 4 Simplon
 
+## Pré-requis :
 
-Dans un terminal de commande  exécuter :
+- Utiliser un serveur POSTGRES
 
-pip install -r requirements
+- Créer une database 'AlimConfiance'
+
+- Modifier le fichier "config.py"
+
+- Installer les librairies : pip install -r requirements.txt
+
+## Lancement :
 
 FLASK_APP = "main.py"
 flask run
 
-ouvrir un navigateur :
-url : http://127.0.0.1:5000/
+Ouvrir un navigateur :
+Url : http://127.0.0.1:5000/
 
-fonctionne avec un serveur POSTGRES
-créer une database 'AlimConfiance' au préalable

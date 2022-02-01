@@ -1,6 +1,7 @@
-from Classes import Connection
-from utilities import create_csv
 import os
+from . import Classes
+from . import utilities
+
 
  # chemins relatifs vers les fichiers de scripts, vers les fichiers de données
 PATH_TO_SCRIPTS = "database/scripts/"
@@ -29,10 +30,10 @@ def create_database():
             4. Exécution des requêtes d'insertion des données dans les tables
     """
     # 1. Connexion à la base de donnée
-    db = Connection.connection_to_database()
+    db = Classes.Connection.connection_to_database()
 
     # 2. Execution du script sql de création des tables si elles n'existent pas
-    if Connection.table_exists(db) != True :
+    if Classes.Connection.table_exists(db) != True :
         for line in open(PATH_TO_SCRIPTS+'create_tables.sql'):
             db.cursor().execute(line)
             db.cursor().close()
@@ -40,13 +41,13 @@ def create_database():
     # 3. Création des fichiers CSV pour chaque table si le fichier n'existe pas
     for key, value in database_tables.items() :
         if value and not os.path.isfile(PATH_TO_CSV+key+'.csv'):
-            create_csv(PATH_TO_CSV+'export_alimconfiance.csv', key, value, db)
+            utilities.create_csv(PATH_TO_CSV+'export_alimconfiance.csv', key, value, db)
     
     # 4. Insertion des données dans les tables si la table est vide
     for key in database_tables.keys():
         file = PATH_TO_CSV+key+'.csv'
         print("check tables content\n")
-        if os.path.isfile(file) and not Connection.data_exist(db, key):
-            Connection.copy_from(db, file, key)
+        if os.path.isfile(file) and not Classes.Connection.data_exist(db, key):
+            Classes.Connection.copy_from(db, file, key)
 
-create_database()
+    return db

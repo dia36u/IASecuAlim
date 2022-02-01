@@ -3,7 +3,7 @@
 *.pyc
 __pycache__
 .cache/
-data/*
+data/*.csv
 
 # Exception
 !data/export_alimconfiance.csv
