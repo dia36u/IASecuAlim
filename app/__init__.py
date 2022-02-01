@@ -21,8 +21,6 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-<<<<<<< HEAD
-=======
     from .models import User, Estimation
 
     create_database(app)
@@ -33,7 +31,6 @@ def create_database(app):
     if not path.exists('app/' + DB_NAME):
         db.create_all(app=app)
         print('Created Database!')
->>>>>>> 4449505dac3893f5cdba4e5b0b9ecc09044a798d
 
     return app
 
