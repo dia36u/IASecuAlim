@@ -58,6 +58,29 @@ def create_csv(csv_source, filename, columns, db_connect=None):
                 print("\nFile '%s_temp.csv' created\n" %filename)
                 create_csv_concerne(file_temp, db_connect)
 
+            if filename == 'domaine_activite':
+                print('Creating dataframe domaine_activite...')
+                delimiter = '|'
+                df_length = len(df)
+                print(df_length)
+
+                for i in range(0, df_length):
+                    row = df.iloc[i]
+                    Lib_activite = row['APP_Libelle_activite_etablissement'].split(delimiter)
+                    if len(Lib_activite) > 1:
+                        df.loc[i, 'APP_Libelle_activite_etablissement'] = Lib_activite[0]
+                        # print(row)
+                        for a in range(1, len(Lib_activite)):
+                            row_copy = row.copy()
+                            # print(row_copy)
+                            row_copy['APP_Libelle_activite_etablissement'] = Lib_activite[a]
+                            new_df = pd.DataFrame(row_copy)
+                            new_df = pd.DataFrame.transpose(new_df)
+                            df = df.append(new_df)
+                        new_csv_file.to_csv(path_or_buf=SAVE_CSV_FILEPATH + filename + '.csv', sep=';', index=True)
+                        print("\nFile '%s.csv' created\n" % filename)
+
+
     # gestion des erreurs et exceptions
     except (Exception, IOError) as error:
         print("IOERROR :", error,'\n')
@@ -134,5 +157,3 @@ def create_csv_concerne(file_temp, db_connect):
 
     print("\nFile 'inspecte.csv' final created\n")
 
-
-#create_csv('database/data/export_alimconfiance.csv','domaine_activite','APP_Libelle_activite_etablissement')
