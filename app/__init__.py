@@ -13,6 +13,7 @@ def create_app():
     app.config['DEBUG'] = True
     app.config['SECRET_KEY'] = 'test'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     db.init_app(app)
 
     # Define route with Blueprint

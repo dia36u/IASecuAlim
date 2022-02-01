@@ -134,3 +134,5 @@ def create_csv_concerne(file_temp, db_connect):
 
     print("\nFile 'inspecte.csv' final created\n")
 
+
+#create_csv('database/data/export_alimconfiance.csv','domaine_activite','APP_Libelle_activite_etablissement')
