@@ -23,7 +23,12 @@ class Connection:
     @staticmethod
     def table_exists(conn):
         try:
-            results = Connection.query_all(conn, "SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+            cursor = conn.cursor()
+            cursor.execute("SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+            conn.commit()
+            results = cursor.fetchall()
+            cursor.close()
+            print("\nQuery checking table_exists successful! \n")
             for result in results:
                 if str(result) == "('etablissement',)":
                     return True
