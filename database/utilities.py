@@ -53,7 +53,7 @@ def create_csv(csv_source, filename, columns, db_connect=None):
             if filename == 'concerne':
                 print('Creating dataframe concerne...')
                 delimiter = '|'
-                df = pd.DataFrame(data=None, columns=['SIRET', 'APP_Libelle_activite_etablissement'])
+                df = pd.DataFrame(data=None, columns=['SIRET', 'APP_Libelle_activite_etablissement','Synthese_eval_sanit'])
                 for i in new_csv_file.index :
                     # on stocke la valeur App_libelle_activite de la ligne
                     list_activities = new_csv_file['APP_Libelle_activite_etablissement'][i]
@@ -65,12 +65,12 @@ def create_csv(csv_source, filename, columns, db_connect=None):
                         activities += activity
                         # on boucle sur la liste des activités qu'on réaffecte au Siret dans un dataframe qu'on concatene dans le df
                         for a in activities :
-                            df_activity = pd.DataFrame(data=[[ new_csv_file['SIRET'][i] , a ]], columns=['SIRET', 'APP_Libelle_activite_etablissement'])
+                            df_activity = pd.DataFrame(data=[[ new_csv_file['SIRET'][i] , a, new_csv_file['Synthese_eval_sanit'][i] ]], columns=['SIRET', 'APP_Libelle_activite_etablissement','Synthese_eval_sanit'])
                             df = pd.concat([df, df_activity], ignore_index=True)
                         # on supprime la ligne concernée du dataframe source
                         new_csv_file.drop(index=i)
                 new_csv_file = pd.concat([new_csv_file, df], ignore_index=True)         
-                new_csv_file.drop_duplicates(subset=['SIRET','APP_Libelle_activite_etablissement'], keep='last', ignore_index=True ,inplace=True)
+                #new_csv_file.drop_duplicates(subset=['SIRET','APP_Libelle_activite_etablissement'], keep='last', ignore_index=True ,inplace=True)
                 file_temp = SAVE_CSV_FILEPATH+filename+'_temp.csv'
                 new_csv_file.to_csv(path_or_buf=file_temp, sep=';', index=True)
                 print("\nFile '%s_temp.csv' created\n" %filename)
@@ -152,13 +152,16 @@ def create_csv_concerne(file_temp, db_connect):
     etablissements.set_index('siret', inplace=True)
     domaine = pd.DataFrame(Classes.Connection.query_all(db_connect,'select * from domaine_activite;'), columns=['id', 'domaine'])
     domaine.set_index('domaine', inplace=True)
+    niveau_hygiene = pd.DataFrame(Classes.Connection.query_all(db_connect,'select * from niveau_hygiene;'), columns=['id', 'niveau'])
+    niveau_hygiene.set_index('niveau', inplace=True)
     
     # Creation d'un df_target pour générer un csv avec de la table de liaison avec id
-    df_target = pd.DataFrame(data=None,columns=['id_etablissement','id_activite'])
+    df_target = pd.DataFrame(data=None,columns=['id_etablissement','id_activite','id_hygiene'])
     for index in range(0, len(df_source)):
         # on stocke la valeur siret et app_libelle du csv source
         siret = df_source['SIRET'][index]
         activite = df_source['APP_Libelle_activite_etablissement'][index]
+        hygiene = df_source['Synthese_eval_sanit'][index]
         # si il y a plusieurs activites dans la variable 'activite' on split
         delimiter = '|'
         if delimiter in activite :
@@ -166,14 +169,16 @@ def create_csv_concerne(file_temp, db_connect):
             activity = activite.split(delimiter)
             activities += activity
             for a in activities:
-                df_new_row = pd.DataFrame(data=[[ etablissements.loc[siret,'id'] , domaine.loc[a,'id'] ]], columns=['id_etablissement', 'id_activite'])
+                df_new_row = pd.DataFrame(data=[[ etablissements.loc[siret,'id'] , domaine.loc[a,'id'] ,niveau_hygiene.loc[hygiene,'id'] ]], columns=['id_etablissement', 'id_activite','id_hygiene'])
                 df_target = pd.concat([df_target, df_new_row], ignore_index=True)
         else:
-            df_new_row = pd.DataFrame(data=[[ etablissements.loc[siret,'id'] , domaine.loc[activite,'id'] ]], columns=['id_etablissement', 'id_activite'])
+            df_new_row = pd.DataFrame(data=[[ etablissements.loc[siret,'id'] , domaine.loc[activite,'id'] ,niveau_hygiene.loc[hygiene,'id'] ]], columns=['id_etablissement', 'id_activite','id_hygiene'])
             df_target = pd.concat([df_target, df_new_row], ignore_index=True)
     
     # Suppression des doublons
-    df_target.drop_duplicates(subset=['id_etablissement','id_activite'], keep='last', ignore_index=True ,inplace=True)            
+    #df_target.drop_duplicates(subset=['id_etablissement','id_activite','id_hygiene'], keep='last', ignore_index=True ,inplace=True)
+    df_target.drop(columns='id_hygiene',inplace=True) 
+    df_target.drop_duplicates(subset=['id_etablissement','id_activite'], keep='last', ignore_index=True ,inplace=True)        
     # Creation d'un fichier csv contenant la liste de ces valeurs et un index numérique
     df_target.to_csv(path_or_buf='database/data/concerne.csv', sep=';', index=False)
     print("\nFile 'concerne.csv' final created\n")

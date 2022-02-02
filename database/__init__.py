@@ -15,7 +15,7 @@ database_tables = {
     'type_activite':'ods_type_activite',
     'cible':['SIRET', 'ods_type_activite'],
     'inspecte':['SIRET', 'Numero_inspection', 'Date_inspection','Synthese_eval_sanit'],
-    'concerne':['SIRET', 'APP_Libelle_activite_etablissement'],
+    'concerne':['SIRET', 'APP_Libelle_activite_etablissement','Synthese_eval_sanit'],
 }
 
 def create_database():
