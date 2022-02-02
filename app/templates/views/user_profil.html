@@ -3,11 +3,10 @@
 {% block main %}
 
     {% include "navigation.html" %}
-
+    
     <ul>
-        <li>Nom</li>
-        <li>Prénom</li>
-        <li>Email</li>
+        <li>Adresse mail:<strong> {{current_user.email}}</strong></li>
+        <li>Prénom:<strong> {{current_user.first_name}}</strong></li>
     </ul>
 
 {% endblock %}
