@@ -4,5 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sklearn
 
-df=pd.read_csv('data/export_alimconfiance.csv', sep=";")
-df.head()
+# Récupération du jeu de données
+df=pd.read_csv('modele/data/export_alimconfiance.csv', sep=";")
+print(df.head())

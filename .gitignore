@@ -4,6 +4,7 @@
 __pycache__
 .cache/
 data/*.csv
+modele/data/regression_logistique_exercice.ipynb
 
 # Exception
 !data/export_alimconfiance.csv
