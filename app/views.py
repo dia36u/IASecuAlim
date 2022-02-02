@@ -1,15 +1,17 @@
 from flask import Blueprint, render_template, request
+from flask_login import login_required, current_user
 
 views = Blueprint('views', __name__)
+
+@views.route('/')
+@login_required
+def profil():
+    # Affiche les données personnels du current-user
+    return render_template("views/user_profil.html")
 
 @views.route('/etablissement')
 def etablissement():
     return render_template("views/add_etablissement.html")
-
-@views.route('/profil')
-def profil():
-    # Affiche les données personnels du current-user
-    return render_template("views/user_profil.html")
 
 @views.route('/historique')
 def historique():

@@ -4,6 +4,6 @@
 __pycache__
 .cache/
 data/*.csv
-
+venv/
 # Exception
 !data/export_alimconfiance.csv

@@ -3,6 +3,6 @@
 DATABASE = {
     'host':'localhost', 
     'user':'postgres', 
-    'password':'mdppstg75', 
+    'password':'postgres', 
     'port':'5432'
 }
