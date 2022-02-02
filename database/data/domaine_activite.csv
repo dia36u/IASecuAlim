@@ -1,0 +1,73 @@
+;APP_Libelle_activite_etablissement
+0;Alimentation générale
+1;Restaurant
+2;_
+3;Rayon pain-viennoiserie-pâtisserie
+4;Boulangerie-Pâtisserie
+5;Traiteur
+6;Rayon boucherie-charcuterie
+7;Poissonnerie
+8;Rayon poissonnerie
+9;Primeur
+10;Boucherie-Charcuterie
+11;Rayon fruits & légumes
+12;Chocolatier
+13;Rayon fromagerie
+14;Restauration collective
+15;Découpe de viande de boucherie
+16;Transformation de lait ou produits laitiers
+17;Transformation de produits de la pêche
+18;Transport de denrées alimentaires
+19;Libre service
+20;Chaîne d'abattage d'animaux boucherie/Gibier ongulé élevage
+21;Mareyage et préparation de produits de la pêche
+22;Rayon pain/viennoiserie/pâtisserie
+23;Transformation de produits carnés
+24;Chaîne d'abattage de volaille/lagomorphe/petit gibier
+25;Purification/Expédition de coquillages
+26;Centre d'emballage des oeufs
+27;Producteur fermier
+28;Fromagerie
+29;Entreposage de produits laitiers
+30;Entreposage de distribution de denrées alimentaires
+31;Commerce alimentaire
+32;Rayon traiteur
+33;Production d'abats
+34;Métier de bouche
+35;Caves d'affinage
+36;VH, VSM, préparation viandes boucherie
+37;Entreposage de viande de volailles
+38;Collecte de lait
+39;Pêche de production primaire
+40;Découpe de fromages
+41;Découpe de viandes de volailles/lagomorphe
+42;Découpe de gibier sauvage
+43;Entreposage non spécialisé de denrées alimentaires
+44;Salle d'abattage à la ferme
+45;Entreposage de produits de la pêche
+46;VH, VSM, préparation viandes volailles lagomorphes
+47;Production de produits à base d'escargots
+48;Halle à M./1ére vente/Vente en gros produits de la pêche
+49;Glacier
+50;Production de produits à base de grenouilles
+51;Production d'œuf liquide d'ovoproduit et produits à base œuf
+52;Entreposage de viande de boucherie
+53;Autres activités de remise directe
+54;Déshydratation de lait ou produits laitiers
+55;Traitement du gibier sauvage
+56;Préparation de produits composés
+57;Vivier produits de la pêche
+58;Abattage de produits de l'aquaculture
+59;Responsable de restauration collective
+60;Vente en gros de viande de boucherie
+61;Centre logistique de débarque de produits de la pêche
+62;Infrastructure de Marché
+63;Gestion administrative-Restauration collective
+64;Production de collagène, de gélatine ou de PHR
+65;Collecte de gibier sauvage
+66;Découpe de gros gibier d'élevage
+67;Découpe de produits de charcuterie
+68;Plateforme d'éclatement de produits de la pêche
+69;Vente en gros de viande de volailles
+70;Collecte et transformation de miel
+71;Distribution automatique
