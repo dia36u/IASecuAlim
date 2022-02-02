@@ -18,11 +18,9 @@ from matplotlib.colors import ListedColormap
 from mpl_toolkits.mplot3d import Axes3D
 import seaborn as sns
 
-# REGRESSION LOGISTIQUE
-
 """ 2.IMPORT DU DATASET """
 # Récupération du jeu de données
-dataset=pd.read_csv('modele/data/clean/export_alimconfiance.csv', sep=";")
+dataset=pd.read_csv('modele/data/clean/AlimConfiance_Clean.csv', sep=";")
 
 # visualisation du jeu de données
 dataset.head()
@@ -42,3 +40,11 @@ sns.heatmap(mat_corr, annot=True) # avec seaborn
 plt.show()
 
 """ 4.SEPARATION DU DATASET EN TRAIN ET TEST SET """
+
+""" 5.Entrainement de la regression logistique sur le Train set """
+
+""" 6.Réaliser des prédictions sur les résultats du Train set """
+
+""" 7.Faites des prédictions des résultats du test set """
+
+""" 8.Evaluation des performances du modèle à l'aide de la matrice de confusion """
