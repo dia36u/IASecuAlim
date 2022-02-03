@@ -24,17 +24,19 @@ dataset=pd.read_csv('modele/data/clean/AlimConfiance_BDD_Clean.csv', sep=";")
 # visualisation du jeu de données
 print(dataset.head())
 
-dataset.drop('agrement', axis=1, inplace=True)
-dataset.drop('id_etablissement', axis=1, inplace=True)
+#dataset.drop('agrement', axis=1, inplace=True)
+#dataset.drop('id_etablissement', axis=1, inplace=True)
 
 """ 3.SEPARATION DU DATASET EN TRAIN ET TEST SET """
 # Définition des variables : indépendantes/ dependantes
 X = dataset.drop('niveau_hygiene', axis=1)
 y = dataset['niveau_hygiene']
 # Sépartion du dataset de sorte à avoir 1/3 des données dans le test set
-X_tn, X_tt, y_tn, y_tt = train_test_split(X, y, test_size=1/3, random_state=0, stratify=y)
+X_tn, X_tt, y_tn, y_tt = train_test_split(X, y, test_size=300, random_state=0, stratify=y)
 print('\ntrain sets size :\n',X_tn.shape, y_tn.shape,'\ntest sets size :\n',X_tn.shape, y_tn.shape )
 print('\ntrain set :\n',y_tn.value_counts())
+
+print(dataset.head())
 
 """ 4.EQUILIBRAGE DES DONNEES DE TRAIN """
 smote = SMOTE(sampling_strategy='auto', random_state=0, k_neighbors=7)

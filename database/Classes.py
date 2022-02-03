@@ -101,3 +101,21 @@ class Connection:
                 print(error)
                 conn.rollback()
                 cursor.close()
+    
+    @staticmethod
+    def query_table(table):
+        conn = Connection.connection_to_database()
+        cursor = conn.cursor()
+        try:
+            query = 'select * from %s;'%table
+            cursor.execute(query)
+            conn.commit()
+            results = cursor.fetchall()
+            cursor.close()
+            print("\nQuery successful: %s \n" % query)
+            return results
+        except (Exception, pg.DatabaseError) as error:
+            print("POSTGRES ERROR :")
+            print(error)
+            conn.rollback()
+            cursor.close()

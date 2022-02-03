@@ -1,10 +1,8 @@
+from multiprocessing.connection import Connection
 from flask import Blueprint, render_template, request
+from database import Classes
 
 views = Blueprint('views', __name__)
-
-@views.route('/etablissement')
-def etablissement():
-    return render_template("views/add_etablissement.html")
 
 @views.route('/profil')
 def profil():
@@ -18,6 +16,8 @@ def historique():
 
 @views.route('/etablissement',methods=['POST','GET'])
 def estimation():
+    activites_domaines = Classes.Connection.query_table('domaine_activite')
+    print(activites_domaines)
     # Affiche un formulaire de demande de prédiction
     if request.method == 'POST':
                 libelle = request.form.get('libelle')
@@ -25,4 +25,4 @@ def estimation():
                 libelle_activite = request.form.get('libelle_activite')
                 return render_template("views/estimation.html",
                 libelle=libelle,siret=siret,libelle_activite=libelle_activite,niveau_hygiene="très satisfaisant")
-    return render_template("views/add_etablissement.html")
+    return render_template("views/add_etablissement.html", domaines=activites_domaines)
