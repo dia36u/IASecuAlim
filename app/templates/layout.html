@@ -20,10 +20,25 @@
                 <h1 class="px-3 py-3">IA Alim'Confiance Service</h1>
             </div>
             <div>
-                <a href="/profil" class="text-decoration-none text-light text-right fs-4 px-3">User</a>
-                <a href="/" class=""><img src="{{ url_for('static', filename='img/power-off-solid.svg') }}" alt="disconnect" height="30px"></a>
+                <a href="/profil" class="text-decoration-none text-light text-right fs-4 px-3">{{current_user.email}}</a>
+                <a href="/logout" class=""><img src="{{ url_for('static', filename='img/power-off-solid.svg') }}" alt="disconnect" height="30px"></a>
             </div>
         </header>
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %} 
+                {% for category, message in messages %} 
+                {% if category == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                </div>
+                {% else %}
+                <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %} {% endfor %} {% endif %} {% endwith %}
         <main class="container">
             {% block main %}{% endblock %}
         </main>
