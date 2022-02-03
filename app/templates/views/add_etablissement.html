@@ -40,18 +40,19 @@
             </div>  
             <div class="col-lg-6">
                 <label for="libelle_activite" class="form-label fs-3">Libellé de l'activité</label>
-                <input type="text" name="libelle_activite" id="libelle_activite" class="form-control bg-light fs-3">
+                <select class="form-select" name="libelle_activite" id="libelle_activite" aria-label="Default select example">
+                    {% for activite in activites  %}
+                    <option value="{{activite[0]}}">{{activite[1]}}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="col-lg-6">
                 <label for="type_activite" class="form-label fs-3">Domaine d'activité</label>
-                    <select name="pets" id="pet-select">
-                        <option value="">--Please choose an option--</option>
-                    {%for domaine in domaines %}
-                        <option value="{{domaine}}">{{domaine}}</option>
-                    {%endfor%}
-                    </select>
-                
-                <input type="text" name="type_activite" id="type_activite" class="form-control bg-light fs-3">
+                <select class="form-select" name="type_activite" id="type_activite" aria-label="Default select example">
+                    {% for type in types  %}
+                    <option value="{{type[0]}}">{{type[1]}}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="col-lg-6">
             <label for="libelle_activite" class="form-label fs-3">Agrémentation</label>
