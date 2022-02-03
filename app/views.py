@@ -43,6 +43,10 @@ def estimation():
         libelle_activite = request.form.get('libelle_activite')
         code_postal = request.form.get('code_postal')
         type_activite = request.form.get('type_activite')
+
+        for activity in activites:
+            if activity[0]==int(libelle_activite):
+                activit_pred=activity[1]
         # niveau_hygiene= ['Très satisfaisant','Satisfaisant','A améliorer','A corriger de manière urgente']
         # niveau_hygiene=(random.choice(niveau_hygiene))
         # new_estimation = Estimation(result=(libelle+' ('+siret+') '+': '+niveau_hygiene), user_id=current_user.id)
@@ -62,5 +66,5 @@ def estimation():
         db.session.commit()
         # summarize input and output
         # print(new_input, new_output)
-        return render_template("views/estimation.html",libelle=libelle,siret=siret,libelle_activite=libelle_activite,niveau_hygiene=niveau_textuel, user=current_user)
+        return render_template("views/estimation.html",libelle=libelle,siret=siret,libelle_activite=activit_pred,niveau_hygiene=niveau_textuel, user=current_user)
     return render_template("views/add_etablissement.html", user=current_user, activites=activites, types=types)
